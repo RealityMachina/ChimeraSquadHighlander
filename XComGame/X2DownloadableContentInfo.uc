@@ -256,7 +256,7 @@ static function UpdateWeaponMaterial(XGWeapon WeaponArchetype, MeshComponent Mes
 /// End Issue #7
 
 
-/// Start Issue #6
+/// Start Issue #6 (WOTC CHL #21)
 /// <summary>
 /// Called from XComUnitPawn.DLCAppendSockets
 /// Allows DLC/Mods to append sockets to units

@@ -1317,6 +1317,7 @@ simulated function OnHeadLoaded(PawnContentRequest ContentRequest)
 
 	HeadContent = XComHeadContent(ContentRequest.kContent);
 	
+	if( HeadContent.SkeletalMesh != Mesh.SkeletalMesh )
 	/*
 	 * Extensive comments on the way Firaxis set up heads:
 	 * The Pawn mesh component (accessible via `Mesh`) contains the standard
@@ -1328,26 +1329,21 @@ simulated function OnHeadLoaded(PawnContentRequest ContentRequest)
 	 * causes major inconsistencies and crashes.
 	 * The commented out code serves purely as documentation of the default behavior.
 	 */
-if( HeadContent.SkeletalMesh != Mesh.SkeletalMesh )
  	{
  		m_kHeadMeshComponent.SetSkeletalMesh(HeadContent.SkeletalMesh);
  		m_kHeadMeshComponent.SetParentAnimComponent(Mesh);
 		AttachComponent(m_kHeadMeshComponent);
-
 		Mesh.AppendSockets(m_kHeadMeshComponent.Sockets, true);
-		// Start Issue #6
+		// Start Issue #6 (WOTC CHL #21)
 		// Call function allowing DLC/Mods to append sockets to units
 		DLCAppendSockets();
-		// End Issue #6
+		// End Issue #6 (WOTC CHL #21)	
+
 		m_kHeadMeshComponent.SetHidden(false);
  	}
 	else
 	{
 		m_kHeadMeshComponent = Mesh; //The base mesh is the head for pawns that load head content
-		// Start Issue #6
-		// Call function allowing DLC/Mods to append sockets to units
-		DLCAppendSockets();
-		// End Issue #6
 	}
 
 	ResetMaterials(m_kHeadMeshComponent);
@@ -1604,10 +1600,11 @@ simulated function OnArmsLoaded(PawnContentRequest ContentRequest)
 		{
 			UseMeshComponent.SetParentAnimComponent(Mesh);
 			Mesh.AppendSockets(UseMeshComponent.Sockets, true);
-			// Start Issue #6
+			// Start Issue #6 (WOTC CHL #21)
 			// Call function allowing DLC/Mods to append sockets to units
 			DLCAppendSockets();
-			// End Issue #6
+			// End Issue #6 (WOTC CHL #21)
+
 		}
 
 		UpdateMeshMaterials(UseMeshComponent);
@@ -1636,10 +1633,11 @@ simulated function OnLegsLoaded(PawnContentRequest ContentRequest)
 	m_kLegsMC.SetParentAnimComponent(Mesh);
 	
 	Mesh.AppendSockets(m_kLegsMC.Sockets, true);
-	// Start Issue #6
+	// Start Issue #6 (WOTC CHL #21)
 	// Call function allowing DLC/Mods to append sockets to units
 	DLCAppendSockets();
-	// End Issue #6
+	// End Issue #6 (WOTC CHL #21)	
+
 	MarkAuxParametersAsDirty(m_bAuxParamNeedsPrimary, m_bAuxParamNeedsSecondary, m_bAuxParamUse3POutline, m_bAuxParamUseHiddenOutline);
 }
 
@@ -2019,10 +2017,10 @@ simulated function OnBodyPartLoaded(PawnContentRequest ContentRequest)
 				UseMeshComponent.SetParentAnimComponent(Mesh);
 				UseMeshComponent.bUpdateMorphWhenParentAnimComponentExists = true;
 				Mesh.AppendSockets(UseMeshComponent.Sockets, true);
-				// Start Issue #6
+				// Start Issue #6 (WOTC CHL #21)
 				// Call function allowing DLC/Mods to append sockets to units
 				DLCAppendSockets();
-				// End Issue #6
+				// End Issue #6 (WOTC CHL #21)	
 
 				for (AttachmentIndex = 0; AttachmentIndex < BodyPartContent.DefaultAttachments.Length; ++AttachmentIndex)
 				{
@@ -2092,10 +2090,10 @@ simulated function OnTorsoLoaded(PawnContentRequest ContentRequest)
 	m_kTorsoComponent.SetParentAnimComponent(Mesh);
 	
 	Mesh.AppendSockets(m_kTorsoComponent.Sockets, true);
-	// Start Issue #6
+	// Start Issue #6 (WOTC CHL #21)
 	// Call function allowing DLC/Mods to append sockets to units
 	DLCAppendSockets();
-	// End Issue #6
+	// End Issue #6 (WOTC CHL #21)	
 
 	for( AttachmentIndex = 0; AttachmentIndex < TorsoContent.DefaultAttachments.Length; ++AttachmentIndex )
 	{
