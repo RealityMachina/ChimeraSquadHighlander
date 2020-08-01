@@ -238,6 +238,10 @@ static function bool DisplayQueuedDynamicPopup(DynamicPropertySet PropertySet)
 }
 
 
+// -------------------------------------------------------------
+// ------------ Chimera Squad Highlander  Additions ------------
+// -------------------------------------------------------------
+
 /// Start Issue #7 (WOTC CHL #245)
 /// Called from XGWeapon:Init.
 /// This function gets called when the weapon archetype is initialized.
@@ -250,3 +254,15 @@ static function WeaponInitialized(XGWeapon WeaponArchetype, XComWeapon Weapon, o
 static function UpdateWeaponMaterial(XGWeapon WeaponArchetype, MeshComponent MeshComp, MaterialInstanceConstant MIC)
 {}
 /// End Issue #7
+
+
+/// Start Issue #6
+/// <summary>
+/// Called from XComUnitPawn.DLCAppendSockets
+/// Allows DLC/Mods to append sockets to units
+/// </summary>
+static function string DLCAppendSockets(XComUnitPawn Pawn)
+{
+	return "";
+}
+/// End Issue #6
