@@ -250,3 +250,14 @@ static function WeaponInitialized(XGWeapon WeaponArchetype, XComWeapon Weapon, o
 static function UpdateWeaponMaterial(XGWeapon WeaponArchetype, MeshComponent MeshComp, MaterialInstanceConstant MIC)
 {}
 /// End Issue #7
+
+/// Start Issue #6 (WOTC CHL #21)
+/// <summary>
+/// Called from XComUnitPawn.DLCAppendSockets
+/// Allows DLC/Mods to append sockets to units
+/// </summary>
+static function string DLCAppendSockets(XComUnitPawn Pawn)
+{
+	return "";
+}
+/// End Issue #6
