@@ -1318,6 +1318,17 @@ simulated function OnHeadLoaded(PawnContentRequest ContentRequest)
 	HeadContent = XComHeadContent(ContentRequest.kContent);
 	
 	if( HeadContent.SkeletalMesh != Mesh.SkeletalMesh )
+	/*
+	 * Extensive comments on the way Firaxis set up heads:
+	 * The Pawn mesh component (accessible via `Mesh`) contains the standard
+	 * head for the given pawn type, or a base pawn. The HeadContent archetypes either contain a
+	 * reference to it (or not, Sparks). The standard code path for Humans below recognizes that and completely
+	 * skips any custom head logic, and instead redirects the head to the base pawn.
+	 * If the meshes differ later (by loading a mod Head), the other code path wants to set the custom head
+	 * mesh component to use the custom mesh. There's one problem -- it's `Mesh` now. This
+	 * causes major inconsistencies and crashes.
+	 * The commented out code serves purely as documentation of the default behavior.
+	 */
  	{
  		m_kHeadMeshComponent.SetSkeletalMesh(HeadContent.SkeletalMesh);
  		m_kHeadMeshComponent.SetParentAnimComponent(Mesh);
@@ -1327,6 +1338,7 @@ simulated function OnHeadLoaded(PawnContentRequest ContentRequest)
 		// Call function allowing DLC/Mods to append sockets to units
 		DLCAppendSockets();
 		// End Issue #6 (WOTC CHL #21)	
+
 		m_kHeadMeshComponent.SetHidden(false);
  	}
 	else
@@ -1592,6 +1604,7 @@ simulated function OnArmsLoaded(PawnContentRequest ContentRequest)
 			// Call function allowing DLC/Mods to append sockets to units
 			DLCAppendSockets();
 			// End Issue #6 (WOTC CHL #21)
+
 		}
 
 		UpdateMeshMaterials(UseMeshComponent);
@@ -1624,6 +1637,7 @@ simulated function OnLegsLoaded(PawnContentRequest ContentRequest)
 	// Call function allowing DLC/Mods to append sockets to units
 	DLCAppendSockets();
 	// End Issue #6 (WOTC CHL #21)	
+
 	MarkAuxParametersAsDirty(m_bAuxParamNeedsPrimary, m_bAuxParamNeedsSecondary, m_bAuxParamUse3POutline, m_bAuxParamUseHiddenOutline);
 }
 

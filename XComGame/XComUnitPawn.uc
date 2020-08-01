@@ -1520,6 +1520,7 @@ function CreateDefaultAttachments()
 	{
 		CreateBodyPartAttachment(DefaultAttachments[DefaultAttachmentIndex]);
 	}
+
 	// Start Issue #6 (WOTC CHL #21)
 	// Defer XComHumanPawn socket adjustments until part customization
 	if (XComHumanPawn(self) == none)
@@ -1552,7 +1553,6 @@ function DLCAppendSockets()
 		}
 	}
 }
-// End Issue #6 (WOTC CHL #21)
 
 function CreateBodyPartAttachment(XComBodyPartContent BodyPartContent)
 {
