@@ -266,3 +266,14 @@ static function string DLCAppendSockets(XComUnitPawn Pawn)
 	return "";
 }
 /// End Issue #6
+
+/// Start Issue #5 (WOTC #24)
+/// <summary>
+/// Called from XComUnitPawn.UpdateAnimations
+/// CustomAnimSets will be added to the pawns animsets
+/// </summary>
+static function UpdateAnimations(out array<AnimSet> CustomAnimSets, XComGameState_Unit UnitState, XComUnitPawn Pawn)
+{
+
+}
+/// End Issue #5 (WOTC #24)
