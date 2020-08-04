@@ -3437,7 +3437,7 @@ function PlayHQIdleAnim(optional name OverrideAnimName, optional bool bIsCapture
 {
 }
 
-// Start Issue #24
+// Start Issue #5 (WOTC #24)
 simulated exec function UpdateAnimations()
 {
 	local XComGameStateHistory History;
@@ -3471,7 +3471,8 @@ simulated exec function UpdateAnimations()
 		}
 	}
 }
-// End Issue #24
+// End Issue #5 (WOTC #24)
+
 //Request from the narrative moment to play dialog
 function QueueDialog(name DialogAnimName)
 {
