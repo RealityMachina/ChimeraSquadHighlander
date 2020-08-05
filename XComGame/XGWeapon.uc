@@ -105,6 +105,10 @@ simulated function Actor CreateEntity(optional XComGameState_Item ItemState=none
 			return none;
 
  		kNewWeapon = Spawn(Template.Class, kOwner,,,,Template);
+
+		// Start Issue #8  (WOTC CHL #281)
+		DLCInfoAddSockets(kNewWeapon, InternalWeaponState);
+		// End Issue #8
 		
 		WeaponMesh = SkeletalMeshComponent(kNewWeapon.Mesh);
 
@@ -209,6 +213,25 @@ simulated function Actor CreateEntity(optional XComGameState_Item ItemState=none
 
 	return kNewWeapon;
 }
+
+// Start Issue #8  (WOTC CHL #281)
+simulated function DLCInfoAddSockets(XComWeapon Weapon, XComGameState_Item ItemState)
+{
+	local array<X2DownloadableContentInfo> DLCInfos;
+	local X2DownloadableContentInfo DLCInfo;
+	local array<SkeletalMeshSocket> NewSockets;
+
+	DLCInfos = `ONLINEEVENTMGR.GetDLCInfos(false);
+	foreach DLCInfos(DLCInfo)
+	{
+		DLCInfo.DLCAppendWeaponSockets(NewSockets, Weapon, ItemState);
+		if (NewSockets.Length > 0)
+		{
+			SkeletalMeshComponent(Weapon.Mesh).AppendSockets(NewSockets, true);
+		}
+	}
+}
+// End Issue #8
 
 // bsg-dforrest (4.11.17): support to async load appearance updates
 private function OnWeaponAppearanceLoaded(XComGameState_Unit Unit)
