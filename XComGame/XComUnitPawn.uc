@@ -3437,6 +3437,42 @@ function PlayHQIdleAnim(optional name OverrideAnimName, optional bool bIsCapture
 {
 }
 
+// Start Issue #5 (WOTC #24)
+simulated exec function UpdateAnimations()
+{
+	local XComGameStateHistory History;
+	local array<X2DownloadableContentInfo> DLCInfos;
+	local array<AnimSet> CustomAnimSets;
+	local XComGameState_Unit UnitState;
+	local int i;
+
+	History = `XCOMHISTORY;
+
+	super.UpdateAnimations();
+
+	if (UnitState_Menu != none) // We're at the Main Menu
+	{
+		UnitState = UnitState_Menu;
+	}
+	else // We're at a Saved Game
+	{
+		UnitState = XComGameState_Unit(History.GetGameStateForObjectID(ObjectID));
+	}
+
+	if (UnitState != none)
+	{
+		DLCInfos = `ONLINEEVENTMGR.GetDLCInfos(false);
+		for(i = 0; i < DLCInfos.Length; ++i)
+		{
+			CustomAnimSets.Length = 0;
+			DLCInfos[i].UpdateAnimations(CustomAnimSets, UnitState, self);
+			if (CustomAnimSets.Length > 0)
+				XComAddAnimSetsExternal(CustomAnimSets);
+		}
+	}
+}
+// End Issue #5 (WOTC #24)
+
 //Request from the narrative moment to play dialog
 function QueueDialog(name DialogAnimName)
 {

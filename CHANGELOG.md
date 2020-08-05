@@ -22,3 +22,4 @@
 #### `WeaponInitialized` added to conditionally change the weapon archetype on initialization (#7)
 #### `UpdateWeaponMaterial` added to conditionally change the weapon materials(#7)
 #### `DLCAppendSockets` added to allow appending sockets to UnitPawns (#6)
+#### `UpdateAnimations` added to allow adding additional animsets to units (#5)
