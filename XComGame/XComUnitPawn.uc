@@ -2025,6 +2025,14 @@ simulated function SetAppearance( const out TAppearance kAppearance, optional bo
 		}
 		// bsg-dforrest (4.11.17): end
 	}
+	else 
+	{
+		// Start Issue #6 (WOTC CHL #21)
+		// Call function allowing DLC/Mods to append sockets to units
+		// we need to put it in here since a unit may not have bodyparts to fire off
+		DLCAppendSockets();
+		// End Issue #6 (WOTC CHL #21)		
+	}
 }
 
 simulated private function RequestFullPawnContent()
