@@ -407,12 +407,7 @@ simulated function RequestFullPawnContent()
 			PawnContentRequests.AddItem(kRequest);
 		}
 		
-		// Start Issue #6 (WOTC CHL #21)
-		// Call function allowing DLC/Mods to append sockets to units
-		// we need to put it in here since a unit may not have bodyparts to fire off
-		// this will also make this function cover enemy units, though that may be useful for mods down the line
-		DLCAppendSockets();
-		// End Issue #6 (WOTC CHL #21)	
+
 		
 		//  Make the requests later. If they come back synchronously, their callbacks will also happen synchronously, and it can throw things out of whack
 		MakeAllContentRequests();
@@ -2233,6 +2228,14 @@ simulated function SetAppearance( const out TAppearance kAppearance, optional bo
 			RequestFullPawnContent();
 		}
 		// bsg-dforrest (4.11.17): end
+	}
+	else 
+	{
+		// Start Issue #6 (WOTC CHL #21)
+		// Call function allowing DLC/Mods to append sockets to units
+		// we need to put it in here since a unit may not have bodyparts to fire off
+		DLCAppendSockets();
+		// End Issue #6 (WOTC CHL #21)		
 	}
 }
 
