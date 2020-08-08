@@ -1523,10 +1523,10 @@ function CreateDefaultAttachments()
 
 	// Start Issue #6 (WOTC CHL #21)
 	// Defer XComHumanPawn socket adjustments until part customization
-	if (XComHumanPawn(self) == none)
-	{
+	//if (XComHumanPawn(self) == none)
+	//{
 		DLCAppendSockets(); // LWS added call to helper function
-	}
+	//}
 	// End Issue #6 (WOTC CHL #21)
 }
 
@@ -2073,6 +2073,7 @@ simulated private function RequestFullPawnContent()
 			UpdateMaterials(AttachedComponent);
 		}
 	}
+		
 }
 
 simulated private function UpdateMaterials(MeshComponent MeshComp)
