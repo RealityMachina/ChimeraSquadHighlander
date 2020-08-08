@@ -277,3 +277,15 @@ static function UpdateAnimations(out array<AnimSet> CustomAnimSets, XComGameStat
 
 }
 /// End Issue #5 (WOTC #24)
+
+/// Start Issue #8  (WOTC CHL #281)
+/// <summary>
+/// Called from XGWeapon.CreateEntity
+/// Allows DLC/Mods to append sockets to weapons
+/// NOTE: To create new sockets from script you need to unconst SocketName and BoneName in SkeletalMeshSocket
+/// </summary>
+static function DLCAppendWeaponSockets(out array<SkeletalMeshSocket> NewSockets, XComWeapon Weapon, XComGameState_Item ItemState)
+{
+	return;
+}
+/// End Issue #8
